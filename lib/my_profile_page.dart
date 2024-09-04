@@ -1,25 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyProfilePage(),
-    );
-  }
-}
-
 class MyProfilePage extends StatelessWidget {
   const MyProfilePage({super.key});
 
@@ -46,31 +26,31 @@ class MyProfilePage extends StatelessWidget {
             ListTile(
               title: const Text('Settings'),
               onTap: () {
-                // Navigate to Settings Page
+                Navigator.pushNamed(context, '/settings'); // Update route if needed
               },
             ),
             ListTile(
               title: const Text('My Profile'),
               onTap: () {
-                // Navigate to My Profile Page
+                Navigator.pushNamed(context, '/myprofile');
               },
             ),
             ListTile(
               title: const Text('Attendance Tracker'),
               onTap: () {
-                // Navigate to Attendance Tracker Page
+                Navigator.pushNamed(context, '/trackattendance');
               },
             ),
             ListTile(
               title: const Text('My Modules'),
               onTap: () {
-                // Navigate to My Modules Page
+                Navigator.pushNamed(context, '/mymodules');
               },
             ),
             ListTile(
               title: const Text('App Settings'),
               onTap: () {
-                // Navigate to App Settings Page
+                Navigator.pushNamed(context, '/appsettings');
               },
             ),
             ListTile(

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart'; // Import the login page
 import 'register_page.dart'; // Import the register page
+import 'my_profile_page.dart'; // Import the my profile page
+import 'track_attendance_page.dart'; // Import the track attendance page
+import 'modules_grid_page.dart'; // Import the modules grid page
+import 'app_settings_page.dart'; // Import the app settings page
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +26,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
+        '/myprofile': (context) => const MyProfilePage(),
+        '/trackattendance': (context) => const TrackAttendancePage(),
+        '/mymodules': (context) => const MyModulesPage(),
+        '/appsettings': (context) => const AppSettingsPage(),
       },
     );
   }
