@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io'; // Import for File class
 
-class MyProfilePage extends StatelessWidget {
+class MyProfilePage extends StatefulWidget {
   const MyProfilePage({super.key});
+
+  @override
+  _MyProfilePageState createState() => _MyProfilePageState();
+}
+
+class _MyProfilePageState extends State<MyProfilePage> {
+  File? _image; // Private field to store the selected image
+
+  // Function to pick an image from the gallery
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path); // Set the image file
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +42,6 @@ class MyProfilePage extends StatelessWidget {
                   fontSize: 24,
                 ),
               ),
-            ),
-            ListTile(
-              title: const Text('Settings'),
-              onTap: () {
-                Navigator.pushNamed(context, '/settings'); // Update route if needed
-              },
             ),
             ListTile(
               title: const Text('My Profile'),
@@ -115,10 +129,12 @@ class MyProfilePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16.0),
+                _image == null
+                    ? const Text('No image selected.')
+                    : Image.file(_image!, height: 150, width: 150),
+                const SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed: () {
-                    // Upload image logic
-                  },
+                  onPressed: _pickImage,
                   child: const Text('Upload Image'),
                 ),
                 const SizedBox(height: 16.0),
