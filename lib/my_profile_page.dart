@@ -1,6 +1,7 @@
+import 'dart:convert'; // Import for base64 encoding
+import 'dart:io'; // Import for File class
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io'; // Import for File class
 
 class MyProfilePage extends StatefulWidget {
   const MyProfilePage({super.key});
@@ -20,6 +21,38 @@ class _MyProfilePageState extends State<MyProfilePage> {
       setState(() {
         _image = File(pickedImage.path); // Set the image file
       });
+    }
+  }
+
+  // Convert image file to base64 string
+  String? _imageToBase64() {
+    if (_image != null) {
+      List<int> imageBytes = _image!.readAsBytesSync();
+      return base64Encode(imageBytes);
+    }
+    return null;
+  }
+
+  // Handle image upload and conversion to JSON
+  void _uploadImage() {
+    String? base64Image = _imageToBase64();
+
+    if (base64Image != null) {
+      Map<String, dynamic> payload = {
+        'image': base64Image,
+        // Add any other fields you need
+      };
+
+      // Convert payload to JSON
+      String jsonPayload = jsonEncode(payload);
+
+      // Print the JSON payload for debugging
+      debugPrint(jsonPayload);
+
+      // TODO: Implement API call to upload JSON payload
+    } else {
+      // Handle case where no image is selected
+      debugPrint('No image selected.');
     }
   }
 
@@ -139,16 +172,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                 ),
                 const SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed: () {
-                    // Change password logic
-                  },
-                  child: const Text('Change Password'),
-                ),
-                const SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: () {
-                    // Submit changes logic
-                  },
+                  onPressed: _uploadImage,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
