@@ -2,6 +2,7 @@ import 'dart:convert'; // Import for base64 encoding
 import 'dart:io'; // Import for File class
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http; // Import for HTTP requests
 
 class MyProfilePage extends StatefulWidget {
   const MyProfilePage({super.key});
@@ -34,22 +35,46 @@ class _MyProfilePageState extends State<MyProfilePage> {
   }
 
   // Handle image upload and conversion to JSON
-  void _uploadImage() {
+  void _uploadImage() async {
     String? base64Image = _imageToBase64();
 
     if (base64Image != null) {
+      // Construct the payload
       Map<String, dynamic> payload = {
         'image': base64Image,
-        // Add any other fields you need
+        'username': 'student_username', // Add other fields like username
       };
 
       // Convert payload to JSON
       String jsonPayload = jsonEncode(payload);
 
-      // Print the JSON payload for debugging
+      // Print the JSON payload for debugging (optional)
       debugPrint(jsonPayload);
 
-      // TODO: Implement API call to upload JSON payload
+      // Define the API endpoint URL
+      final url = Uri.parse('https://your-api-url.com/upload'); // Replace with your actual API endpoint
+
+      try {
+        // Make the HTTP POST request
+        final response = await http.post(
+          url,
+          headers: {
+            'Content-Type': 'application/json', // Set the content type to JSON
+          },
+          body: jsonPayload, // Send the JSON payload
+        );
+
+        if (response.statusCode == 200) {
+          // Success - handle the response
+          debugPrint('Image uploaded successfully: ${response.body}');
+        } else {
+          // Failure - handle the error
+          debugPrint('Failed to upload image: ${response.statusCode}');
+        }
+      } catch (e) {
+        // Handle exceptions such as network errors
+        debugPrint('Error occurred: $e');
+      }
     } else {
       // Handle case where no image is selected
       debugPrint('No image selected.');

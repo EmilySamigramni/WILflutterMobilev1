@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'my_profile_page.dart'; // Import the MyProfilePage
+import 'my_profile_page.dart'; 
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -8,7 +8,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green, // Green banner color
+        backgroundColor: Colors.green, 
         title: const Text('Login'),
       ),
       body: Center(

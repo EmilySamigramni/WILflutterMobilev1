@@ -1,12 +1,13 @@
-// student.dart
 class Student {
-  String studentId;
-  String firstName;
-  String lastName;
-  String username;
-  String phoneNumber;
-  String email;
-  String dateOfBirth; // YYYY-MM-DD format
+  final String studentId;
+  final String firstName;
+  final String lastName;
+  final String username;
+  final String phoneNumber;
+  final String email;
+  final String dateOfBirth;
+  final int campusId;
+  final bool registrationComplete;
 
   Student({
     required this.studentId,
@@ -16,9 +17,10 @@ class Student {
     required this.phoneNumber,
     required this.email,
     required this.dateOfBirth,
+    required this.campusId,
+    required this.registrationComplete,
   });
 
-  // Convert the Student object to JSON
   Map<String, dynamic> toJson() {
     return {
       'studentId': studentId,
@@ -27,7 +29,9 @@ class Student {
       'username': username,
       'phoneNumber': phoneNumber,
       'email': email,
-      'dateOfBirth': dateOfBirth,
+      'dateOfBirth': dateOfBirth, // Convert DateTime to String
+      'campusId': campusId,
+      'registrationComplete': registrationComplete,
     };
   }
 }
