@@ -8,7 +8,7 @@ class AppSettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('App Settings'),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blue,
       ),
       body: Center(
         child: Column(

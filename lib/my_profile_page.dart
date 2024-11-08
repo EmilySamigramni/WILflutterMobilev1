@@ -66,7 +66,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
           children: <Widget>[
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.green,
+                color: Colors.blue, // Blue background for the drawer header
               ),
               child: Text(
                 'INNOV8',
@@ -111,13 +111,13 @@ class _MyProfilePageState extends State<MyProfilePage> {
       ),
       appBar: AppBar(
         title: const Text('My Profile'),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blue, // Blue background for the app bar
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            color: Colors.green,
+            color: Colors.blue, // Blue background for the header
             padding: const EdgeInsets.all(16.0),
             child: const Text(
               'My Profile',
@@ -129,7 +129,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
             ),
           ),
           Container(
-            color: Colors.white,
+            color: Colors.white, // White background for the main content
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,42 +139,60 @@ class _MyProfilePageState extends State<MyProfilePage> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color: Colors.black, // Black text
                   ),
                 ),
                 const SizedBox(height: 8.0),
                 const Text(
                   'Let\'s review your profile',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 16, color: Colors.black),
                 ),
                 const SizedBox(height: 16.0),
-                const TextField(
+                TextField(
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    hintText: 'Username',
+                    border: const OutlineInputBorder(),
                     labelText: 'Username',
+                    labelStyle: const TextStyle(color: Colors.blue), // Blue label
+                    filled: true,
+                    fillColor: Colors.grey[200], // Light grey background for input
                   ),
+                  style: const TextStyle(color: Colors.black), // Black text
                 ),
                 const SizedBox(height: 16.0),
-                const TextField(
+                TextField(
                   obscureText: true,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    hintText: 'Password',
+                    border: const OutlineInputBorder(),
                     labelText: 'Password',
+                    labelStyle: const TextStyle(color: Colors.blue), // Blue label
+                    filled: true,
+                    fillColor: Colors.grey[200], // Light grey background for input
                   ),
+                  style: const TextStyle(color: Colors.black), // Black text
                 ),
                 const SizedBox(height: 16.0),
                 _image == null
-                    ? const Text('No image selected.')
+                    ? const Text(
+                        'No image selected.',
+                        style: TextStyle(color: Colors.black),
+                      )
                     : Image.file(_image!, height: 150, width: 150),
                 const SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: _pickImage,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue, // Blue button color
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  ),
                   child: const Text('Upload Image'),
                 ),
                 const SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: _uploadImage,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.blue, // Blue button color
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                   ),
                   child: const Text('Submit Changes'),
